@@ -1,0 +1,20 @@
+def next_bigger(n):
+    n = list(str(n))
+    for i in range(len(n)-1, 0, -1):
+        tmp = i
+        if int(n[i]) > int(n[i-1]):
+            tmp_2 = n[i-1]
+            n[i], n[i-1] = n[i-1], n[i]
+            for q in range(i, len(n)):
+                if int(n[q]) > int(tmp_2) and int(n[q]) < int(n[i-1]):
+                    n[i-1], n[q] = n[q], n[i-1]
+            copy = n[i:len(n)]
+            copy = [int(x) for x in copy]
+            for i in range(len(copy)-1):
+                for j in range(len(copy)-i-1):
+                    if copy[j] > copy[j+1]:
+                        copy[j], copy[j+1] = copy[j+1], copy[j]                    
+            copy = [str(i) for i in copy]
+            n[tmp:] = copy[:]
+            return int("".join(x for x in n))
+    return -1
