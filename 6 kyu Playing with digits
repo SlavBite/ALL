@@ -1,0 +1,10 @@
+def dig_pow(n, p):
+    
+    dig_num = 0
+    for i in str(n):
+        dig_num += int(i)**p 
+        p += 1
+    if dig_num % n == 0:
+        return dig_num // n
+    return -1
+    
