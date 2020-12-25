@@ -1,0 +1,15 @@
+def who_is_next(names, r):
+    a = len(names)
+    c = 1
+    while r-a > 0:
+        r -= a
+        a *= 2
+        c += 1
+        
+    name = 0
+    c = 2**(c-1)
+    while r-c > 0:
+        name += 1
+        r -= c
+        
+    return names[name]
