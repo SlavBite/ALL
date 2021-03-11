@@ -1,0 +1,62 @@
+"""
+Sudoku Background
+Sudoku is a game played on a 9x9 grid. The goal of the game is to fill all cells of the grid with digits from 1 to 9, so that each column, each row, and each of the nine 3x3 sub-grids (also known as blocks) contain all of the digits from 1 to 9.
+(More info at: http://en.wikipedia.org/wiki/Sudoku)
+
+Sudoku Solution Validator
+Write a function validSolution/ValidateSolution/valid_solution() that accepts a 2D array representing a Sudoku board, and returns true if it is a valid solution, or false otherwise. The cells of the sudoku board may also contain 0's, which will represent empty cells. Boards containing one or more zeroes are considered to be invalid solutions.
+
+The board is always 9 cells by 9 cells, and every cell only contains integers from 0 to 9.
+"""
+
+
+class game:
+
+    def __init__(self, board):
+        self.xLine = board
+        self.yLine = get_all_yLine(board)
+        self.Grids3x3 = get_all_Grids3x3(board)
+        
+    def TrueOrFalse(self):
+        for arr in self.xLine:
+            if sum(arr) != 45:
+                return False
+            
+        for arr in self.yLine:
+            if sum(arr) != 45:
+                return False
+            
+        for arr in self.Grids3x3:
+            if sum(arr) != 45:
+                return False   
+            
+        return True
+        
+
+def get_all_Grids3x3(board):
+    
+    arr_Grids3x3 = [[0 for _ in range(len(board[0]))] for _ in range(len(board))]
+    
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            arr_Grids3x3[i][j] = board[j//3 + 3 * (i//3)][(j%3) + (i%3 * 3)]
+            
+    return  arr_Grids3x3
+                
+        
+        
+def get_all_yLine(board):
+        
+    arr_yLine = [[0 for _ in range(len(board[0]))] for _ in range(len(board))]
+        
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            arr_yLine[i][j] = board[j][i]  
+        
+    return arr_yLine    
+
+
+def valid_solution(board):
+    sudoku = game(board)
+    
+    return sudoku.TrueOrFalse()
