@@ -1,0 +1,15 @@
+"""
+Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+"""
+def move_zeros(array):
+    i = 0
+    count = 0
+    while i < len(array):
+        if str(array[i]).isdigit() and array[i] == 0:
+            count += 1
+            array.remove(0)
+        else:
+            i += 1
+            
+    
+    return array + [0]*count
